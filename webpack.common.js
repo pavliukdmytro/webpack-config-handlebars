@@ -1,5 +1,5 @@
 const path = require('path');
-const HandlebarsPlugin = require("handlebars-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -52,17 +52,23 @@ module.exports = {
 						name: 'fonts/[name].[ext]',
 					}
 				},
+			},
+			{
+				test: /\.hbs$/,
+				loader: "handlebars-loader",
+				query: {
+					partialDirs: [
+						path.join(__dirname, 'src/templates')
+					],
+				},
 			}
 		]
 	},
 	plugins: [
-		new HandlebarsPlugin({
-			entry: path.join(process.cwd(),'src/pages/index.hbs'),
-			output: path.join(process.cwd(),'dist/index.html'),
-			data: path.join(process.cwd(),'src/data/index.json'),
-			partials: [
-				path.join(process.cwd(),"src/components", "*", "*.hbs")
-			],
+		new HtmlWebpackPlugin({
+			template: "./src/pages/index.hbs",
+			filename: "index.html",
+			templateParameters: require('./src/data/index.json')
 		}),
 		new CleanWebpackPlugin()
 	]
