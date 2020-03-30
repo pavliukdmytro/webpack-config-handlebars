@@ -3,11 +3,32 @@
     "header": {
         "logo": {
             "href": "javascript:void(0)",
-            "img": ""
+            "img": "./images/logo.png"
         },
         "menu": [
             {
-
+                "text": "HOME"
+            },
+            {
+                "text": "Features"
+            },
+            {
+                "text": "Gallery"
+            },
+            {
+                "text": "Video"
+            },
+            {
+                "text": "PriceS"
+            },
+            {
+                "text": "Testimonials"
+            },
+            {
+                "text": "DOWNLOAD"
+            },
+            {
+                "text": "CONTACT"
             }
         ]
     }

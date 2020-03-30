@@ -14,18 +14,11 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(png|jpe?g|gif|webp)$/i,
-				include: [
-					path.resolve(__dirname, 'src/images/')
-				],
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							name: 'images/[name].[ext]',
-							esModule: false,
-						}
-					},
-				],
+					loader: 'file-loader',
+					options: {
+						name: 'images/[name].[ext]',
+						esModule: false,
+					}
 			},
 			{
 				test: /\.m?js$/,
@@ -54,20 +47,20 @@ module.exports = {
 					partialDirs: [
 						path.join(__dirname, 'src/templates')
 					],
-					inlineRequires: '/src/images/'
+					//inlineRequires: '/src/images/'
 				},
 			}
 		]
 	},
 	plugins: [
+		new CopyPlugin([
+			{ from: 'src/images/', to: 'images/' }
+		], { copyUnmodified: true }),
 		new HtmlWebpackPlugin({
 			template: "./src/pages/index.hbs",
 			filename: "index.html",
 			templateParameters: require('./src/data/index.json')
 		}),
 		new CleanWebpackPlugin(),
-		new CopyPlugin([
-			{ from: 'src/images/', to: 'images/' }
-		]),
 	]
 };

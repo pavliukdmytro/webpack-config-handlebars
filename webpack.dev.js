@@ -6,12 +6,13 @@ module.exports = merge(common, {
 	mode: 'development',
 	devtool: 'cheap-module-eval-source-map',
 	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
+		contentBase: [path.join(__dirname, 'dist')],
 		open: true,
 		hot: true,
 		noInfo: true,
 		clientLogLevel: 'silent',
-		writeToDisk: true
+		writeToDisk: true,
+		//outputPath: path.join(__dirname, 'dist')
 	},
 	module: {
 		rules: [
