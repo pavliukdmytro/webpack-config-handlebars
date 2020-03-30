@@ -1,6 +1,7 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -13,6 +14,9 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(png|jpe?g|gif|webp)$/i,
+				include: [
+					path.resolve(__dirname, 'src/images/')
+				],
 				use: [
 					{
 						loader: 'file-loader',
@@ -22,16 +26,6 @@ module.exports = {
 						}
 					},
 				],
-			},
-			{
-				test: /\.(html)$/,
-				use: {
-					loader: 'html-loader',
-					options: {
-						interpolate: 'require',
-						attrs: [':src'],
-					}
-				}
 			},
 			{
 				test: /\.m?js$/,
@@ -60,6 +54,7 @@ module.exports = {
 					partialDirs: [
 						path.join(__dirname, 'src/templates')
 					],
+					inlineRequires: '/src/images/'
 				},
 			}
 		]
@@ -70,6 +65,9 @@ module.exports = {
 			filename: "index.html",
 			templateParameters: require('./src/data/index.json')
 		}),
-		new CleanWebpackPlugin()
+		new CleanWebpackPlugin(),
+		new CopyPlugin([
+			{ from: 'src/images/', to: 'images/' }
+		]),
 	]
 };

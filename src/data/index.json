@@ -1,3 +1,14 @@
 {
-    "title": "home page"
+    "title": "home page",
+    "header": {
+        "logo": {
+            "href": "javascript:void(0)",
+            "img": ""
+        },
+        "menu": [
+            {
+
+            }
+        ]
+    }
 }
