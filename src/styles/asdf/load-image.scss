@@ -1,0 +1,13 @@
+.container {
+	width: 200px;
+	height: 150px;
+	background-color: black;
+	background-image: url('../../images/image2.jpg');
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+@font-face {
+	font-family: fira;
+	src: url("../../fonts/fira-sans-latin.woff2");
+}
