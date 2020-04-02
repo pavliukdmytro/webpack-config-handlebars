@@ -13,11 +13,11 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(png|jpe?g|gif|webp)$/i,
+				test: /\.(png|jpe?g|gif|webp|svg)$/i,
 					loader: 'file-loader',
 					options: {
 						name: 'images/[name].[ext]',
-						esModule: false,
+						esModule: false
 					}
 			},
 			{
@@ -37,18 +37,18 @@ module.exports = {
 					loader: 'file-loader',
 					options: {
 						name: 'fonts/[name].[ext]',
+						publicPath: '../'
 					}
 				},
 			},
 			{
 				test: /\.hbs$/,
 				loader: "handlebars-loader",
-				query: {
+				options: {
 					partialDirs: [
 						path.join(__dirname, 'src/templates')
-					],
-					//inlineRequires: '/src/images/'
-				},
+					]
+				}
 			}
 		]
 	},
@@ -59,7 +59,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: "./src/pages/index.hbs",
 			filename: "index.html",
-			templateParameters: require('./src/data/index.json')
+			templateParameters: require('./src/data/index.json'),
+			minify: false
 		}),
 		new CleanWebpackPlugin(),
 	]

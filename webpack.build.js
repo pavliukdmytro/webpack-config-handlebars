@@ -14,7 +14,10 @@ module.exports = merge(common, {
 				test: /\.css$/,
 				use: [
 					{
-						loader: MiniCssExtractPlugin.loader
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../'
+						}
 					},
 					'css-loader',
 				],
@@ -51,18 +54,19 @@ module.exports = merge(common, {
 			// both options are optional
 			filename: 'bundles/[name].css',
 			chunkFilename: 'bundles/[id].css',
+			publicPath: '../'
 		}),
 	],
 	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				styles: {
-					name: 'styles',
-					test: /\.s?css$/,
-					chunks: 'all',
-				},
-			},
-		},
+		//splitChunks: {
+		//	cacheGroups: {
+		//		styles: {
+		//			name: 'styles',
+		//			test: /\.s?css$/,
+		//			chunks: 'all',
+		//		},
+		//	},
+		//},
 		minimizer: [new TerserJSPlugin({sourceMap: true}), new OptimizeCSSAssetsPlugin({})],
 	},
 });
