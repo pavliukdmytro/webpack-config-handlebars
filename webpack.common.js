@@ -47,7 +47,19 @@ module.exports = {
 				options: {
 					partialDirs: [
 						path.join(__dirname, 'src/templates')
-					]
+					],
+					helperResolver: (helper, callback) => {
+						switch (helper) {
+						case './ifeq':
+							callback(null, path.resolve(__dirname, 'src/helpers/ifeq.js'));
+							break;
+						case './inc':
+							callback(null, path.resolve(__dirname, 'src/helpers/inc.js'));
+							break;
+						default:
+							callback();
+						}
+					}
 				}
 			}
 		]
@@ -57,7 +69,7 @@ module.exports = {
 			{ from: 'src/images/', to: 'images/' }
 		], { copyUnmodified: true }),
 		new HtmlWebpackPlugin({
-			template: "./src/pages/index.hbs",
+			template: "./src/templates/pages/index.hbs",
 			filename: "index.html",
 			templateParameters: require('./src/data/index.json'),
 			minify: false

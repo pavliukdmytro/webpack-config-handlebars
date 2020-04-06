@@ -1,2 +1,15 @@
-//import './styles/styles.scss';
 require('./styles/styles.scss');
+require('./templates/templates.scss');
+
+
+
+
+
+
+
+
+
+
+
+
+require('./templates/templates');
